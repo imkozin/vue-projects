@@ -10,6 +10,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/user/:id',
+    name: 'user',
+    component: () => import('../views/UserPageView.vue')
+  }
 ]
 
 const router = new VueRouter({

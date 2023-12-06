@@ -1,6 +1,8 @@
 <template>
     <v-container>
-        <User v-for="user in users" :user="user"/>
+        <v-row>
+            <User v-for="user in users" :user="user"/>
+        </v-row>
     </v-container>
 </template>
 
@@ -11,11 +13,19 @@ import User from '@/components/user/User'
         components: {
             User
         },
-        data: () => ({
-            users: []
-        }),
+        data() {
+            return {
+                users: []
+            }
+        },
         mounted() {
-            
+            this.fetchUsers()
+        },
+        methods: {
+            async fetchUsers() {
+                this.axios.get('https://jsonplaceholder.typicode.com/users')
+                .then(response => this.users = response.data)
+            }
         }
     }
 </script>
