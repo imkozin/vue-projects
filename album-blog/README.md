@@ -1,4 +1,4 @@
-# vue-blog
+# album-blog
 
 ## Project setup
 ```
