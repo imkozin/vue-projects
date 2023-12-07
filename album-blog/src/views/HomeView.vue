@@ -1,17 +1,17 @@
 <template>
     <v-container>
         <v-row>
-            <User v-for="user in users" :user="user"/>
+            <UserList v-for="user in users" :user="user"/>
         </v-row>
     </v-container>
 </template>
 
 <script>
-import User from '@/components/user/User'
+import UserList from '@/components/UserList'
 
     export default {
         components: {
-            User
+            UserList
         },
         data() {
             return {

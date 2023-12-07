@@ -8,13 +8,23 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/user/:id',
     name: 'user',
-    component: () => import('../views/UserPageView.vue')
-  }
+    component: () => import('../views/UserPageView.vue'),
+  },
+  {
+    path: '/user/:id/posts',
+    name: 'posts',
+    component: () => import('../views/PostPage.vue'),
+  },
+  {
+    path: '/user/:id/albums',
+    name: 'albums',
+    component: () => import('../views/AlbumPage.vue'),
+  },
 ]
 
 const router = new VueRouter({

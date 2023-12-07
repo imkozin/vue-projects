@@ -7,7 +7,7 @@
       >
         <v-spacer></v-spacer>
         <v-btn outlined class="btn">
-        <router-link to="/" class="link">Home</router-link>
+        <router-link to="/" id="link">Home</router-link>
       </v-btn>
       </v-app-bar>
     </v-container>
@@ -15,7 +15,7 @@
 
 <style scoped>
 
-.link {
+#link {
     color: white;
     text-decoration: none;
 }
