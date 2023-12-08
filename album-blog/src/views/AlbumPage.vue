@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>User {{ id }}</h1>
+    <h1>Albums of {{ user.name }}</h1>
     <AlbumList :albums="userAlbums" :id="id"/>
   </div>
 </template>
@@ -16,13 +16,23 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      user: []
     }
   },
   mounted() {
-    this.fetchAlbums()
+    this.fetchAlbums();
+    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchAlbums'])
+    ...mapActions(['fetchAlbums']),
+    async fetchUser() {
+      try {
+        const response = await this.axios.get(`https://jsonplaceholder.typicode.com/users/${this.id}`);
+        this.user = response.data;
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }
   },
   computed: mapGetters(['userAlbums']),
 }

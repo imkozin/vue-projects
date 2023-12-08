@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>User {{ id }}</h1>
+    <h1>Page of {{ user.name }}</h1>
     <PostForm @addPost="addPost" :id="id"/>
     <PostList :posts="posts" :id="id"/>
     <AlbumList :albums="albums" :photos="photos" :id="id"/>
@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      user: []
     };
   },
    computed: { 
@@ -29,11 +30,19 @@ export default {
     this.fetchPosts();
     this.fetchAlbums();
     this.fetchPhotos();
+    this.fetchUser();
   },
   methods: {
     ...mapActions(['fetchPosts', 'fetchAlbums', 'fetchPhotos']),
+    async fetchUser() {
+      try {
+        const response = await this.axios.get(`https://jsonplaceholder.typicode.com/users/${this.id}`);
+        this.user = response.data;
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }
   },
-
 };
 </script>
 

@@ -19,11 +19,10 @@
         <v-list two-line>
           <v-list-item>
             <v-list-item-avatar>
-              <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+              <v-img :src="`https://i.pravatar.cc/300?img=${id}`"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ album.title }}</v-list-item-title>
-              <v-list-item-subtitle>User {{ id }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>

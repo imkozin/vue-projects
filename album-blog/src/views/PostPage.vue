@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>User {{ id }}</h1>
+    <h1>Posts of {{ user.name }}</h1>
     <PostList :posts="posts" :id="id"/>
   </div>
 </template>
@@ -16,10 +16,12 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      user: []
     }
   },
   mounted() {
-    this.fetchPosts()
+    this.fetchPosts();
+    this.fetchUser()
   },
   methods: {
     ...mapActions(['fetchPosts'])
