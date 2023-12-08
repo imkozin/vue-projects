@@ -24,7 +24,15 @@ export default {
     this.fetchUser()
   },
   methods: {
-    ...mapActions(['fetchPosts'])
+    ...mapActions(['fetchPosts']),
+    async fetchUser() {
+      try {
+        const response = await this.axios.get(`https://jsonplaceholder.typicode.com/users/${this.id}`);
+        this.user = response.data;
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }
   }
 }
 </script>

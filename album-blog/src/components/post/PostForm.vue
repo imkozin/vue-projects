@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row class="flex-column" id="form">
+  <v-container >
+    <v-row class="flex-column mx-auto" id="form">
       <v-text-field solo dense label="Title" v-model="title" />
       <v-textarea v-model="body" solo name="input-7-4" label="Your Post"></v-textarea>
       <v-btn @click="submitPost">Add Post</v-btn>
@@ -40,6 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 #form {
-  max-width: 400px;
+  max-width: 70%;
 }
 </style>

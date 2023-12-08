@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="user-album__page">
+        <h2 class="user-album__page-title">User Albums:</h2>
     <div v-for="album in userAlbums(id)" :key="album.id">
-      <!-- <h2>User Album: {{ album.title }}</h2> -->
       <v-card elevation="24" max-width="444" class="mx-auto">
         <v-system-bar lights-out></v-system-bar>
         <v-carousel
@@ -56,5 +56,9 @@ import {mapGetters} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-
+.user-album__page {
+    &-title {
+        text-align: center;
+    }
+}
 </style>

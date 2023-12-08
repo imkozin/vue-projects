@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <h1>Page of {{ user.name }}</h1>
-    <PostForm @addPost="addPost" :id="id"/>
+  <div class="user-page">
+    <div class="user-page__info">
+        <h1>{{ user.name }}</h1>
+    </div>
     <PostList :posts="posts" :id="id"/>
     <AlbumList :albums="albums" :photos="photos" :id="id"/>
 </div>
 </template>
 
 <script>
-import PostForm from '@/components/post/PostForm.vue';
 import PostList from '@/components/post/PostList.vue';
 import AlbumList from '@/components/AlbumList.vue'
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
   components: {
-    PostForm, PostList, AlbumList
+    PostList, AlbumList
   },
   data() {
     return {
@@ -47,5 +47,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Your styles go here */
+.user-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+
+  &__info {
+    grid-column: span 2;  
+    text-align: center;  
+  }
+
+  @media (max-width: 992px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>
