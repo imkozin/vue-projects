@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Posts of {{ user.name }}</h1>
+  <div class="post-page">
+    <h1 class="post-page__title">Posts of {{ user.name }}</h1>
     <PostList :posts="posts" :id="id"/>
   </div>
 </template>
@@ -37,4 +37,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.post-page {
+  &__title {
+    text-align: center;
+  }
+}
+</style>

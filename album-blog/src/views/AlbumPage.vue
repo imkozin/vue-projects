@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Albums of {{ user.name }}</h1>
+  <div class="album-page">
+    <h1 class="album-page__title">Albums of {{ user.name }}</h1>
     <AlbumList :albums="userAlbums" :id="id"/>
   </div>
 </template>
@@ -38,4 +38,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.album-page {
+  &__title {
+    text-align: center;
+  }
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
     <div class="user-album__page">
         <h2 class="user-album__page-title">User Albums:</h2>
-    <div v-for="album in userAlbums(id)" :key="album.id">
+    <div v-for="album in userAlbums(id)" :key="album.id" class="user-album__page-container">
       <v-card elevation="24" max-width="444" class="mx-auto">
         <v-system-bar lights-out></v-system-bar>
         <v-carousel
@@ -36,14 +36,14 @@ import {mapGetters} from 'vuex'
 
     export default {
         props: {
-            // albums: {
+            // userAlbums: {
             //     type: Object,
             //     required: true
             // },
-            photos: {
-                type: Object,
-                required: true
-            },
+            // photos: {
+            //     type: Object,
+            //     required: true
+            // },
             id: {
                 type: Number,
                 required: true
@@ -57,6 +57,13 @@ import {mapGetters} from 'vuex'
 
 <style lang="scss" scoped>
 .user-album__page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
     &-title {
         text-align: center;
     }
