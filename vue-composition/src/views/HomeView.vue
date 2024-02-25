@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTitle }}</h2>
+    <h2 ref="appTitleRef">{{ appTitle }}</h2>
     <h3>{{ counterData.title }}</h3>
     <div>
       <button @click="decreaseCounter(2)" class="btn">--</button>
@@ -14,27 +14,47 @@
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text" />
+      <input v-model="counterData.title" type="text" v-autofocus/>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, reactive, ref, watch } from 'vue'
+import {
+  computed,
+  nextTick,
+  onActivated,
+  onBeforeMount,
+  onBeforeUnmount,
+  onBeforeUpdate,
+  onDeactivated,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  reactive,
+  ref,
+  watch,
+} from 'vue'
+import {vAutofocus} from '@/directives/vAutofocus'
 
 // const counter = ref(0),
 //   counterTitle = ref('My Counter')
 const appTitle = 'My Amazing Counter App'
+
+const appTitleRef = ref(null)
 
 const counterData = reactive({
   count: 0,
   title: 'My Counter',
 })
 
-watch(() => counterData.count, (newCount, oldCount) => {
-   if(newCount == 20) {
-    alert('You reached 20')
-   }
+
+watch(
+  () => counterData.count,
+  (newCount, oldCount) => {
+    if (newCount == 20) {
+      alert('You reached 20')
+    }
   }
 )
 
@@ -45,6 +65,9 @@ const oddOrEven = computed(() => {
 
 const increaseCounter = (amount, e) => {
   console.log(e)
+  nextTick(() => {
+    console.log(`do smth when counter has been `);
+  })
   // counter.value++
   // counterData.count++
   counterData.count += amount
@@ -55,9 +78,44 @@ const decreaseCounter = (amount) => {
   // counterData.count--
   counterData.count -= amount
 }
+
+
+
+onBeforeMount(() => {
+  console.log('onBeforeMount')
+})
+
+onMounted(() => {
+  console.log('onMounted')
+  console.log(`The app is ${appTitleRef.value.offsetWidth} px wide`);
+})
+
+// onBeforeUnmount(() => {
+//   console.log('onBeforeUnmount')
+// })
+
+// onUnmounted(() => {
+//   console.log('onUnmounted')
+// }) 
+
+// onActivated(() => {
+//   console.log('onActivated')
+// })
+
+// onDeactivated(() => {
+//   console.log('onDeactivated')
+// })
+
+// onBeforeUpdate(() => {
+//   console.log('onBeforeUpdate');
+// })
+
+// onUpdated(() => {
+//   console.log('onUpdated');
+// })
 </script>
 
-<!-- <script>
+<!--  <script>
 export default {
   data() {
     return {
@@ -73,10 +131,23 @@ export default {
     count(newCount, oldCount) {
       if (newCount == 20) alert('new message')
     }
+  },
+  mounted() {
+    console.log('mounted');
+  },
+  unmounted() {
+    console.log('unmounted');
+  },
+  directives: {
+    autofocus: {
+      mounted(el) {
+        el.focus()
+      }
+    }
   }
 }
 </script> 
--->
+--> 
 
 <!-- <script >
 import { ref } from 'vue'
